@@ -1,5 +1,6 @@
 package com.upboard.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,9 @@ import java.net.URLEncoder;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+
+    @Autowired
+    UserDao userDao;
 
     @GetMapping("/login")
     public String loginForm() {
@@ -50,7 +54,7 @@ public class LoginController {
             // 쿠키를 삭제
             Cookie cookie = new Cookie("id", id);
             cookie.setMaxAge(0); // 쿠키를 삭제
-            response.addCookie(cookie);
+            response.addCookie(cookie); // 응답에 저장
         }
 
         //      3. 홈으로 이동
@@ -59,6 +63,12 @@ public class LoginController {
     }
 
     private boolean loginCheck(String id, String pwd) {
-        return "asdf".equals(id) && "1234".equals(pwd);
+        User user = userDao.selectUser(id);
+
+        if(user == null) {
+            return false;
+        }
+
+        return user.getPwd().equals(pwd);
     }
 }

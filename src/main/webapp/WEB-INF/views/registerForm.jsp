@@ -1,7 +1,6 @@
 <%@page contentType="text/html;charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page import="java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +69,6 @@
     <title>Register</title>
 </head>
 <body>
-<%--<form action="<c:url value="/register/save"/>" method="post" onsubmit="return formCheck(this)">--%>
 <form:form modelAttribute="user">
     <div class="title">Register</div>
     <%--    <div id="msg" class="msg"> ${URLDecoder.decode(param.msg, "utf-8")} </div>--%>
@@ -85,7 +83,7 @@
     <label for="">이메일</label>
     <input class="input-field" type="text" name="email" placeholder="example@fastcampus.co.kr">
     <label for="">생일</label>
-    <input class="input-field" type="text" name="birth" placeholder="2020/12/31">
+    <input class="input-field" type="text" name="birth" placeholder="2023-01-31">
     <div class="sns-chk">
         <label><input type="checkbox" name="sns" value="facebook"/>페이스북</label>
         <label><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</label>
@@ -93,10 +91,9 @@
     </div>
     <button>회원 가입</button>
 </form:form>
-<%--</form>--%>
 <script>
     function formCheck(frm) {
-        var msg ='';
+        let msg ='';
 
         if(frm.id.value.length<3) {
             setMessage('id의 길이는 3이상이어야 합니다.', frm.id);
