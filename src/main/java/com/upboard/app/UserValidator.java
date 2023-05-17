@@ -1,5 +1,6 @@
 package com.upboard.app;
 
+import com.upboard.app.domain.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;

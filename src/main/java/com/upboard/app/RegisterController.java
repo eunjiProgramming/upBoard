@@ -1,5 +1,7 @@
 package com.upboard.app;
 
+import com.upboard.app.dao.UserDao;
+import com.upboard.app.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
