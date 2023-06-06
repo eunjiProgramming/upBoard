@@ -199,7 +199,6 @@ public class BoardDaoImplTest {
 
     @Test
     public void insertTestData() throws Exception {
-        boardDao.deleteAll();
         for(int i = 1; i <= 35; i++) {
             BoardDto boardDto = new BoardDto("리치는 건강해요"+i, "리치가 아주 건강하네요!! 그리고 이뻐요", "eunji");
             boardDao.insert(boardDto);
@@ -231,6 +230,13 @@ public class BoardDaoImplTest {
         }
 
         for(int i = 1; i <= 35; i++) {
+            BoardDto boardDto = new BoardDto("title"+i, "no content", "asdf");
+            boardDao.insert(boardDto);
+        }
+    }
+    @Test
+    public void insertTestData2() throws Exception {
+        for(int i = 1; i <= 230; i++) {
             BoardDto boardDto = new BoardDto("title"+i, "no content", "asdf");
             boardDao.insert(boardDto);
         }
