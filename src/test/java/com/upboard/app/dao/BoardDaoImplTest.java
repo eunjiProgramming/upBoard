@@ -1,6 +1,7 @@
 package com.upboard.app.dao;
 
 import com.upboard.app.domain.BoardDto;
+import com.upboard.app.domain.SearchCondition;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -240,5 +241,46 @@ public class BoardDaoImplTest {
             BoardDto boardDto = new BoardDto("title"+i, "no content", "asdf");
             boardDao.insert(boardDto);
         }
+    }
+
+    @Test
+    public void searchSelectPageTest() throws Exception {
+        boardDao.deleteAll();
+
+        for (int i = 1; i <= 20; i++) {
+            BoardDto boardDto = new BoardDto("title"+i, "no content", "asdf"+i);
+            boardDao.insert(boardDto);
+        }
+
+        SearchCondition sc = new SearchCondition(1, 10, "W", "asdf2");
+        List<BoardDto> list = boardDao.searchSelectPage(sc);
+        System.out.println("list = " + list);
+        assertTrue(list.size()==2);
+
+        sc = new SearchCondition(1, 10, "T", "title2");
+        list = boardDao.searchSelectPage(sc);
+        System.out.println("list = " + list);
+        assertTrue(list.size()==2);
+    }
+
+
+    @Test
+    public void searchResultCntTest() throws Exception {
+        boardDao.deleteAll();
+
+        for (int i = 1; i <= 20; i++) {
+            BoardDto boardDto = new BoardDto("title"+i, "no content", "asdf"+i);
+            boardDao.insert(boardDto);
+        }
+
+        SearchCondition sc = new SearchCondition(1, 10, "T", "title2");
+        int cnt = boardDao.searchResultCnt(sc);
+        System.out.println("cnt = " + cnt);
+        assertTrue(cnt==2);
+
+        sc = new SearchCondition(1, 10, "W", "asdf2");
+        cnt = boardDao.searchResultCnt(sc);
+        System.out.println("cnt = " + cnt);
+        assertTrue(cnt==2);
     }
 }
