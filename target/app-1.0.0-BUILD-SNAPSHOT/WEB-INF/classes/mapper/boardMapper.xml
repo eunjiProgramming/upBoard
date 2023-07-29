@@ -56,11 +56,7 @@
         WHERE bno = #{bno}
     </update>
 
-    <update id="updateCommentCnt" parameterType="map">
-        UPDATE board
-        SET comment_cnt = comment_cnt + #{cnt}
-        WHERE bno = #{bno}
-    </update>
+
 
     <update id="increaseViewCnt" parameterType="int">
         UPDATE board
@@ -98,5 +94,11 @@
         WHERE true
         <include refid="searchCondition"/>
     </select>
+
+    <update id="updateCommentCnt" parameterType="map">
+        UPDATE board
+        SET comment_cnt = comment_cnt + #{cnt}
+        WHERE bno = #{bno}
+    </update>
 
 </mapper>

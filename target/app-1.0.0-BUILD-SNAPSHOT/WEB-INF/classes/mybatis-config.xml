@@ -5,6 +5,7 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="BoardDto" type="com.upboard.app.domain.BoardDto"/>
+        <typeAlias alias="CommentDto" type="com.upboard.app.domain.CommentDto"/>
         <typeAlias alias="SearchCondition" type="com.upboard.app.domain.SearchCondition"/>
     </typeAliases>
 </configuration>
